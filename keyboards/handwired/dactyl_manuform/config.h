@@ -22,7 +22,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 /* USB Device descriptor parameter */
 #define VENDOR_ID       0x444D
-#define MANUFACTURER    tshort
+#define MANUFACTURER    eiketheo
 
 /* mouse config */
 #define MOUSEKEY_INTERVAL       20
