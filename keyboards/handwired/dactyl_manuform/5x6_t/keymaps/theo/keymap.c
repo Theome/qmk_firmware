@@ -60,3 +60,37 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                        _______,_______,_______,            _______,_______,_______
   ),
 };
+
+void update_led(void) {
+  // Capslock priority
+  if (host_keyboard_leds() & (1<<USB_LED_CAPS_LOCK)) {
+    rgblight_setrgb(RGB_WHITE);
+  } else {
+    // look layer...
+    switch (biton32(layer_state)) {
+      case 1:
+        rgblight_setrgb(RGB_RED);
+        break;
+      case 2:
+        rgblight_setrgb(RGB_BLUE);
+        break;
+      case 3:
+        rgblight_setrgb(RGB_GREEN);
+        break;
+      default:
+        rgblight_setrgb(RGB_YELLOW);
+        break;
+    }
+  }
+}
+
+layer_state_t layer_state_set_user(layer_state_t state) {
+// layer_state_t layer_state_set_keymap(layer_state_t state) {
+    update_led();
+    return state;
+}
+
+void keyboard_post_init_user(void) {
+  rgblight_enable(); // Enable RGB by default
+  // rgblight_mode_noeeprom(RGBLIGHT_MODE_BREATHING + 2);
+}

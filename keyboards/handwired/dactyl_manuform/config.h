@@ -46,6 +46,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /* Enables This makes it easier for fast typists to use dual-function keys */
 #define PERMISSIVE_HOLD
 
+// #define RGBLIGHT_ANIMATIONS
+
 /*
  * Feature disable options
  *  These options are also useful to firmware size reduction.
