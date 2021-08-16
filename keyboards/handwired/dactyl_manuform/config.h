@@ -51,7 +51,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // in our cable to the left half.
 #define SPLIT_USB_DETECT
 #define MASTER_LEFT
+
 // #define RGBLIGHT_ANIMATIONS
+#define RGBLIGHT_LAYERS
+#define RGBLIGHT_SPLIT
 
 /*
  * Feature disable options

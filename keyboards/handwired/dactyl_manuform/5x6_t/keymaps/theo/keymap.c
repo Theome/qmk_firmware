@@ -61,6 +61,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 };
 
+/*
 void update_led(void) {
   // Capslock priority
   if (host_keyboard_leds() & (1<<USB_LED_CAPS_LOCK)) {
@@ -69,28 +70,78 @@ void update_led(void) {
     // look layer...
     switch (biton32(layer_state)) {
       case 1:
-        rgblight_setrgb(RGB_RED);
+        rgblight_sethsv_noeeprom(0, 255, 255);
+//         rgblight_setrgb(RGB_RED);
         break;
       case 2:
-        rgblight_setrgb(RGB_BLUE);
+        rgblight_sethsv_noeeprom(100, 255, 255);
+//         rgblight_setrgb(RGB_BLUE);
         break;
       case 3:
-        rgblight_setrgb(RGB_GREEN);
+              rgblight_sethsv_noeeprom(150, 255, 255);
+//         rgblight_setrgb(RGB_GREEN);
         break;
       default:
-        rgblight_setrgb(RGB_YELLOW);
+//         rgblight_setrgb(RGB_YELLOW);
+        rgblight_sethsv_noeeprom(200, 255, 255);
         break;
     }
   }
+}*/
+
+
+// layer_state_t layer_state_set_user(layer_state_t state) {
+//     update_led();
+//     return state;
+// }
+
+bool led_update_user(led_t led_state) {
+    rgblight_set_layer_state(0, led_state.caps_lock);
+    return true;
 }
 
-layer_state_t layer_state_set_user(layer_state_t state) {
-// layer_state_t layer_state_set_keymap(layer_state_t state) {
-    update_led();
+layer_state_t default_layer_state_set_user(layer_state_t state) {
+    rgblight_set_layer_state(1, layer_state_cmp(state, _QWERTY));
     return state;
 }
 
+layer_state_t layer_state_set_user(layer_state_t state) {
+    rgblight_set_layer_state(0, layer_state_cmp(state, _RAISE));
+    rgblight_set_layer_state(2, layer_state_cmp(state, _LOWER));
+    rgblight_set_layer_state(3, layer_state_cmp(state, _MAC));
+    return state;
+}
+
+// Light LEDs 6 to 9 and 12 to 15 red when caps lock is active. Hard to ignore!
+const rgblight_segment_t PROGMEM my_capslock_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+    {0, 10, HSV_RED},       // Light 4 LEDs, starting with LED 6
+    {0, 10, HSV_RED}       // Light 4 LEDs, starting with LED 12
+);
+// Light LEDs 9 & 10 in cyan when keyboard layer 1 is active
+const rgblight_segment_t PROGMEM my_layer1_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+    {0, 10, HSV_CYAN}
+);
+// Light LEDs 11 & 12 in purple when keyboard layer 2 is active
+const rgblight_segment_t PROGMEM my_layer2_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+    {0, 10, HSV_PURPLE}
+);
+// Light LEDs 13 & 14 in green when keyboard layer 3 is active
+const rgblight_segment_t PROGMEM my_layer3_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+    {0, 10, HSV_GREEN}
+);
+// etc..
+
+// Now define the array of layers. Later layers take precedence
+const rgblight_segment_t* const PROGMEM my_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
+    my_capslock_layer,
+    my_layer1_layer,    // Overrides caps lock layer
+    my_layer2_layer,    // Overrides other layers
+    my_layer3_layer     // Overrides other layers
+);
+
 void keyboard_post_init_user(void) {
-  rgblight_enable(); // Enable RGB by default
+//   rgblight_enable(); // Enable RGB by default
   // rgblight_mode_noeeprom(RGBLIGHT_MODE_BREATHING + 2);
+//   rgblight_enable_noeeprom();
+  rgblight_layers = my_rgb_layers;
 }
