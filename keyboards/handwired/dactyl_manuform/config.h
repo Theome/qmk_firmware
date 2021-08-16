@@ -36,7 +36,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 /* serial.c configuration for split keyboard */
 #define SOFT_SERIAL_PIN D0
-#define SELECT_SOFT_SERIAL_SPEED 2
+#define SELECT_SOFT_SERIAL_SPEED 1
 
 /* Mechanical locking support. Use KC_LCAP, KC_LNUM or KC_LSCR instead in keymap */
 #define LOCKING_SUPPORT_ENABLE
@@ -49,9 +49,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // The keyboard half with an active USB communication is master.
 // Master is always the left half. This means we must plug
 // in our cable to the left half.
-#define SPLIT_USB_DETECT
+// #define SPLIT_USB_DETECT
 #define MASTER_LEFT
 
+#define RGBLIGHT_ENABLE
 // #define RGBLIGHT_ANIMATIONS
 #define RGBLIGHT_LAYERS
 #define RGBLIGHT_SPLIT

@@ -61,7 +61,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 };
 
-/*
+
 void update_led(void) {
   // Capslock priority
   if (host_keyboard_leds() & (1<<USB_LED_CAPS_LOCK)) {
@@ -87,14 +87,26 @@ void update_led(void) {
         break;
     }
   }
-}*/
+}
 
 
-// layer_state_t layer_state_set_user(layer_state_t state) {
+layer_state_t layer_state_set_user(layer_state_t state) {
 //     update_led();
-//     return state;
-// }
+            rgblight_sethsv_noeeprom(0, 255, 10);
 
+    return state;
+}
+
+void keyboard_post_init_user(void) {
+  rgblight_enable(); // Enable RGB by default
+//   rgblight_mode_noeeprom(RGBLIGHT_MODE_BREATHING + 2);
+  rgblight_enable_noeeprom();
+//   rgblight_layers = my_rgb_layers;
+            rgblight_sethsv_noeeprom(0, 255, 10);
+
+}
+
+/*
 bool led_update_user(led_t led_state) {
     rgblight_set_layer_state(0, led_state.caps_lock);
     return true;
@@ -145,3 +157,11 @@ void keyboard_post_init_user(void) {
 //   rgblight_enable_noeeprom();
   rgblight_layers = my_rgb_layers;
 }
+
+void eeconfig_init_user(void) {  // EEPROM is getting reset!
+  // use the non noeeprom versions, to write these values to EEPROM too
+  rgblight_enable(); // Enable RGB by default
+  rgblight_sethsv_white();  // Set it to white by default
+  rgblight_mode(RGBLIGHT_MODE_BREATHING); // set to breathing by default
+}
+*/
