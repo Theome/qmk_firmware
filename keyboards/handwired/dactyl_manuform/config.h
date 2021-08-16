@@ -46,6 +46,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /* Enables This makes it easier for fast typists to use dual-function keys */
 #define PERMISSIVE_HOLD
 
+// The keyboard half with an active USB communication is master.
+// Master is always the left half. This means we must plug
+// in our cable to the left half.
+#define SPLIT_USB_DETECT
+#define MASTER_LEFT
 // #define RGBLIGHT_ANIMATIONS
 
 /*
