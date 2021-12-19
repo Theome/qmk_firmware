@@ -37,11 +37,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 // WS2812 RGB LED strip input and number of LEDs
 #define RGB_DI_PIN D1
-#define RGBLED_NUM 24
+#define RGBLED_NUM 16
 #define RGBLIGHT_SPLIT
-#define RGBLED_SPLIT { 12, 12 }
-
+#define RGBLED_SPLIT { 8, 8 }
 #define RGBLIGHT_ANIMATIONS
+
+// Enables lighting layers
+#define RGBLIGHT_LAYERS
+
+// Enables syncing of the layer state between both halves of the split keyboard
+#define SPLIT_LAYER_STATE_ENABLE
 
 /* define if matrix has ghost */
 //#define MATRIX_HAS_GHOST
