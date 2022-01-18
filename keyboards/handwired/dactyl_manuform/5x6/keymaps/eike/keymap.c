@@ -1,10 +1,6 @@
 /* A standard layout for the Dactyl Manuform 5x6 Keyboard */
 
 #include QMK_KEYBOARD_H
-#ifdef TAPPING_TOGGLE 
-#undef TAPPING_TOGGLE 
-#define TAPPING_TOGGLE  2
-#endif
 
 #define GRAVE_ESC_ALT_OVERRIDE
 #define GRAVE_ESC_CTRL_OVERRIDE
