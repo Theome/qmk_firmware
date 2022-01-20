@@ -28,14 +28,21 @@ void keyboard_post_init_user(void) {
   rgblight_mode_noeeprom(RGBLIGHT_MODE_BREATHING + 2); // sets mode to Fast breathing
 }
 */
+enum {
+    TAPDANCE_1 = 0
+};
+
+qk_tap_dance_action_t tap_dance_actions[] = {
+    [TAPDANCE_1] = ACTION_TAP_DANCE_DOUBLE(KC_DOT, KC_PDOT), 
+};
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_QWERTY] = LAYOUT_5x6(
-     KC_GRV , KC_1  , KC_2  , KC_3  , KC_4  , KC_5  ,                         KC_6  , KC_7  , KC_8  , KC_9  , KC_0  ,LT(RGBLAY,KC_MINS),
-     KC_TAB , KC_Q  , KC_W  , KC_E  , KC_R  , KC_T  ,                         KC_Y  , KC_U  , KC_I  , KC_O  , KC_P  , KC_LBRC ,
-     KC_LSFT, KC_A  , KC_S  , KC_D  , KC_F  , KC_G  ,                         KC_H  , KC_J  , KC_K  , KC_L  ,KC_SCLN,KC_QUOT,
-     KC_LCTL, KC_Z  , KC_X  , KC_C  , KC_V  , KC_B  ,                         KC_N  , KC_M  ,KC_COMM,KC_DOT ,KC_SLSH,KC_RCTL,
+     KC_GRV , KC_1  , KC_2  , KC_3  , KC_4  , KC_5  ,                         KC_6  , KC_7  , KC_8  , KC_9  , KC_0   ,LT(RGBLAY,KC_MINS),
+     KC_TAB , KC_Q  , KC_W  , KC_E  , KC_R  , KC_T  ,                         KC_Y  , KC_U  , KC_I  , KC_O  , KC_P   , KC_LBRC ,
+     KC_LSFT, KC_A  , KC_S  , KC_D  , KC_F  , KC_G  ,                         KC_H  , KC_J  , KC_K  , KC_L  ,KC_SCLN ,KC_QUOT,
+     KC_LCTL, KC_Z  , KC_X  , KC_C  , KC_V  , KC_B  ,                         KC_N  , KC_M  ,KC_COMM,KC_DOT ,KC_SLSH ,KC_RCTL,
                       KC_LGUI,KC_LALT,                                                       KC_RALT, KC_RGUI,
                                        KC_SPC,KC_BSPC,                        KC_ESC,KC_ENT,
                                        LOWER,NAVLAY,                          NAVLAY, LOWER,
@@ -44,10 +51,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_LOWER] = LAYOUT_5x6(
 
-     KC_F12 , KC_F1 , KC_F2 , KC_F3 , KC_F4 , KC_F5 ,                        KC_F6  , KC_F7 , KC_F8 , KC_F9 ,KC_F10 ,KC_F11 ,
-     KC_TILD,KC_EXLM, RALT(KC_7) ,RALT(KC_0),KC_DLR ,KC_PERC,                         KC_P7 , KC_P8 , KC_P9 ,KC_NLCK,KC_PAST,KC_PPLS,
-     KC_CIRC,KC_AMPR,LSFT(KC_8),LSFT(KC_9),KC_NUHS,RALT(KC_Q),                         KC_P4 , KC_P5 , KC_P6 ,RALT(KC_RBRC),KC_PSLS,KC_PMNS,
-     _______,_______,RALT(KC_8) ,RALT(KC_9),LSFT(KC_2),LSFT(KC_NUHS),                         KC_P1 , KC_P2 , KC_P3 ,KC_PDOT, KC_PEQL,_______,
+     KC_F12 , KC_F1 , KC_F2 , KC_F3 , KC_F4 , KC_F5 ,                        KC_F6 , KC_F7 , KC_F8 , KC_F9         , KC_F10  , KC_F11 ,
+     RALT(KC_RBRC),KC_EXLM, RALT(KC_7) ,RALT(KC_0),KC_DLR ,KC_PERC,					 KC_P7 , KC_P8 , KC_P9 , KC_NLCK       , KC_PAST , KC_PPLS,
+     KC_CIRC,KC_AMPR,LSFT(KC_8),LSFT(KC_9),KC_NUHS,RALT(KC_Q),							 KC_P4 , KC_P5 , KC_P6 , RALT(KC_MINS) , KC_PSLS , KC_PMNS,
+     _______,KC_PEQL,RALT(KC_8) ,RALT(KC_9),LSFT(KC_2),LSFT(KC_NUHS),        KC_P1 , KC_P2 , KC_P3 , TD(TAPDANCE_1) , KC_PEQL  , _______,
                      KC_NUBS, LSFT(KC_NUBS) ,																									      KC_P0, _______,
                                              _______,KC_DEL,           _______,_______,
                                             _______ , _______ ,				  _______,_______,
@@ -56,11 +63,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
   [_NAVLAY] = LAYOUT_5x6(
 
-     KC_NO	,KC_NO	, KC_NO ,KC_WH_U,KC_NO	,KC_NO,                        KC_PSCR,KC_SLCK,KC_PAUS,KC_NLCK,KC_NO,KC_MUTE,
-     KC_NO, KC_NO,KC_NO,KC_MS_U,KC_NO,KC_NO,															 KC_HOME,KC_PGDN,KC_PGUP,KC_END,KC_NO,KC_VOLU,
-     KC_CAPS,KC_NO,KC_MS_L,KC_BTN3,KC_MS_R,KC_NO,                        KC_LEFT,KC_DOWN,KC_UP,KC_RGHT,KC_MINS,KC_VOLD,
-     _______,KC_NO,KC_WH_L,KC_MS_D,KC_WH_R,KC_NO,                        KC_MPRV,KC_MPLY,KC_MNXT,KC_NO ,KC_NO,KC_NO ,
-                      _______,KC_WH_D,																						 						_______,_______,
+     KC_NO   , KC_NO , KC_NO   , KC_WH_U , KC_NO   , KC_NO ,                  KC_PSCR , KC_SLCK , KC_PAUS , KC_NLCK , KC_NO   , KC_MUTE ,
+     KC_NO   , KC_NO , KC_NO   , KC_MS_U , KC_BTN3 , KC_NO , 								  KC_HOME , KC_PGDN , KC_PGUP , KC_END  , KC_NO   , KC_VOLU ,
+     KC_CAPS , KC_NO , KC_MS_L , KC_MS_D , KC_MS_R , KC_NO ,                  KC_LEFT , KC_DOWN , KC_UP   , KC_RGHT , KC_MINS , KC_VOLD ,
+     _______ , KC_NO , KC_WH_L , KC_WH_D , KC_WH_R , KC_NO ,                  KC_MPRV , KC_MPLY , KC_MNXT , KC_NO   , KC_NO   , KC_NO ,
+                       _______ , _______ ,																						 						_______,_______,
                                              KC_BTN1,KC_BTN2,            KC_BTN1,KC_BTN2,
                                              _______,_______,            _______,_______,
                                              _______,_______,            _______,_______
@@ -69,13 +76,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_RGBLAY] = LAYOUT_5x6(
 
      RGB_MODE_RAINBOW,RGB_MODE_SWIRL, RGB_MODE_SNAKE ,RGB_MODE_KNIGHT,RGB_MODE_XMAS ,RGB_MODE_GRADIENT,                        KC_CIRC,KC_AMPR,KC_ASTR,KC_LPRN,KC_RPRN,KC_DEL,
-     RGB_MODE_PLAIN,_______,_______,_______,_______,KC_LBRC,                        KC_RBRC, KC_P7 , KC_P8 , KC_P9 ,_______,RGB_VAI,
-     _______,KC_HOME,KC_PGUP,KC_PGDN,KC_END ,KC_LPRN,                        KC_RPRN, KC_P4 , KC_P5 , KC_P6 ,KC_MINS,RGB_VAD,
-     _______,_______,_______,_______,_______,_______,                        _______, KC_P1 , KC_P2 , KC_P3 ,KC_EQL ,_______,
-                                             _______,RGB_TOG,            _______, KC_P0,
-                                             _______,_______,            _______,_______,
-                                             _______,_______,            _______,_______,
-                                             _______,_______,            _______,_______
+     RGB_MODE_PLAIN, KC_NO   , KC_NO   , KC_NO   , KC_NO   , KC_NO   ,                        KC_NO, KC_NO ,  KC_NO  ,  KC_NO  ,  KC_NO  ,RGB_VAI,
+     KC_NO   , KC_NO , KC_NO   , KC_NO   , KC_NO   , KC_NO ,                         KC_NO ,  KC_NO  ,  KC_NO  ,  KC_NO  ,KC_MINS,RGB_VAD,
+     KC_NO   , KC_NO , KC_NO   , KC_NO   , KC_NO   , KC_NO ,                  KC_NO   , KC_NO , KC_NO   , KC_NO   , KC_NO   , KC_NO ,
+										_______,RGB_TOG,																															  KC_NO  , KC_NO,
+                                             KC_NO  ,  KC_NO  ,              KC_NO  ,  KC_NO  ,
+                                             KC_NO  ,  KC_NO  ,              KC_NO  ,  KC_NO  ,
+                                             KC_NO  ,  KC_NO  ,              KC_NO  ,  KC_NO  
 
   ),
 
@@ -83,11 +90,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 
 const rgblight_segment_t PROGMEM my_numlock_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {14, 2, HSV_RED}
+    {14, 2, HSV_GREEN}
 );
 
 const rgblight_segment_t PROGMEM my_capslock_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {2, 2, HSV_BLUE}
+    {2, 2, HSV_YELLOW}
 );
 
 const rgblight_segment_t PROGMEM my_layer1_layer[] = RGBLIGHT_LAYER_SEGMENTS(
@@ -95,7 +102,7 @@ const rgblight_segment_t PROGMEM my_layer1_layer[] = RGBLIGHT_LAYER_SEGMENTS(
 );
 
 const rgblight_segment_t PROGMEM my_layer2_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 24, HSV_PURPLE}
+    {0, 24, HSV_RED}
 );
 
 const rgblight_segment_t PROGMEM my_layer3_layer[] = RGBLIGHT_LAYER_SEGMENTS(
