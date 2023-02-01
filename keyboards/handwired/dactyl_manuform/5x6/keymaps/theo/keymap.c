@@ -47,29 +47,34 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 };
 
+// LED-Nummern:
+// 0-7: Linke Hälfte, im Boden, von hinten bis zum Thumbcluster
+// 8-11: Linke Hälfte, innen
+// 12-19: Rechte Hälfte, im Boden, von hinten bis zum Thumbcluster
+// 20-23: Rechte Hälfte, innen (LEDs bei mir defekt?)
 const rgblight_segment_t PROGMEM my_capslock_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-//     {5, 3, HSV_RED},
-//     {13, 3, HSV_RED}
-    {0, 24, HSV_GREEN}
+    {   2, 2, HSV_ORANGE},
+//     {   8, 4, HSV_ORANGE}
+    {12+2, 2, HSV_ORANGE}
+//     {12+8, 4, HSV_ORANGE}
 );
 
-const rgblight_segment_t PROGMEM my_layer1_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+const rgblight_segment_t PROGMEM fn_rgb_layer[] = RGBLIGHT_LAYER_SEGMENTS(
     {0, 24, HSV_CYAN}
+//     {0, 8, HSV_CYAN},
+//     {12, 8, HSV_CYAN}
 );
 
-const rgblight_segment_t PROGMEM my_layer2_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+const rgblight_segment_t PROGMEM mac_rgb_layer[] = RGBLIGHT_LAYER_SEGMENTS(
     {0, 24, HSV_RED}
+//     {0, 8, HSV_RED},
+//     {12, 8, HSV_RED}
 );
-//
-// const rgblight_segment_t PROGMEM my_layer3_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-//     {0, 24, HSV_GREEN}
-// );
 
 const rgblight_segment_t* const PROGMEM my_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
-    my_capslock_layer,
-    my_layer1_layer,    // Overrides caps lock layer
-    my_layer2_layer//,    // Overrides other layers
-//     my_layer3_layer     // Overrides other layers
+    fn_rgb_layer,
+    mac_rgb_layer,
+    my_capslock_layer
 );
 
 void keyboard_post_init_user(void) {
@@ -80,13 +85,12 @@ void keyboard_post_init_user(void) {
 }
 
 bool led_update_user(led_t led_state) {
-    rgblight_set_layer_state(0, led_state.caps_lock);
+    rgblight_set_layer_state(2, led_state.caps_lock);
     return true;
 }
 
 layer_state_t layer_state_set_user(layer_state_t state) {
-    rgblight_set_layer_state(1, layer_state_cmp(state, _FN));
-    rgblight_set_layer_state(2, layer_state_cmp(state, _MAC));
-//     rgblight_set_layer_state(3, layer_state_cmp(state, _MAC));
+    rgblight_set_layer_state(0, layer_state_cmp(state, _FN));
+    rgblight_set_layer_state(1, layer_state_cmp(state, _MAC));
     return state;
 }
