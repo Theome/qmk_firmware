@@ -14,39 +14,29 @@
 #define NAVLAY TT(_NAVLAY)
 #define RGBLAY MO(_RGBLAY)
 
-/*
-void keyboard_post_init_user(void) {
-  // Customise these values to desired behaviour
-//   debug_enable=true;
-//   debug_matrix=true;
-//   debug_keyboard=true;
-  //debug_mouse=true;
-//   xprintf("testtttt")
-
-  rgblight_enable_noeeprom(); // enables Rgb, without saving settings
-  rgblight_sethsv_noeeprom(180, 255, 255); // sets the color to teal/cyan without saving
-  rgblight_mode_noeeprom(RGBLIGHT_MODE_BREATHING + 2); // sets mode to Fast breathing
-}
-*/
 enum {
-    TAPDANCE_1 = 0
+    TAPDANCE_1 = 0,
+    TAPDANCE_2 = 1
 };
 
 qk_tap_dance_action_t tap_dance_actions[] = {
     [TAPDANCE_1] = ACTION_TAP_DANCE_DOUBLE(KC_DOT, KC_PDOT), 
+    [TAPDANCE_2] = ACTION_TAP_DANCE_DOUBLE(KC_RSFT, KC_ESC) 
 };
+
+
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_QWERTY] = LAYOUT_5x6(
      KC_GRV , KC_1  , KC_2  , KC_3  , KC_4  , KC_5  ,                         KC_6  , KC_7  , KC_8  , KC_9  , KC_0   ,LT(RGBLAY,KC_MINS),
      KC_TAB , KC_Q  , KC_W  , KC_E  , KC_R  , KC_T  ,                         KC_Y  , KC_U  , KC_I  , KC_O  , KC_P   , KC_LBRC ,
-     KC_ESC , KC_A  , KC_S  , KC_D  , KC_F  , KC_G  ,                         KC_H  , KC_J  , KC_K  , KC_L  ,KC_SCLN ,KC_QUOT,
+     KC_LSFT , KC_A  , KC_S  , KC_D  , KC_F  , KC_G  ,                         KC_H  , KC_J  , KC_K  , KC_L  ,KC_SCLN ,KC_QUOT,
      KC_LCTL, KC_Z  , KC_X  , KC_C  , KC_V  , KC_B  ,                         KC_N  , KC_M  ,KC_COMM,KC_DOT ,KC_SLSH ,KC_RCTL,
                       KC_LGUI,KC_LALT,                                                       KC_RALT, KC_RGUI,
-                                       KC_SPC,KC_BSPC,                        KC_DEL,KC_ENT,
+                                       KC_SPC,KC_LSFT,                        TD(TAPDANCE_2) ,KC_ENT,
                                        LOWER,NAVLAY,                          NAVLAY, LOWER,
-                                       KC_LALT, KC_LSFT,                      KC_RSFT , KC_LGUI
+                                       KC_LALT, KC_BSPC ,                     KC_DEL , KC_LGUI
   ),
 
   [_LOWER] = LAYOUT_5x6(
@@ -84,7 +74,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                              KC_NO  ,  KC_NO  ,              KC_NO  ,  KC_NO  ,
                                              KC_NO  ,  KC_NO  ,              KC_NO  ,  KC_NO  
 
-  ),
+  )
 
 };
 
@@ -98,11 +88,11 @@ const rgblight_segment_t PROGMEM my_capslock_layer[] = RGBLIGHT_LAYER_SEGMENTS(
 );
 
 const rgblight_segment_t PROGMEM my_layer1_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 24, HSV_CYAN}
+    {0, 24, HSV_RED}
 );
 
 const rgblight_segment_t PROGMEM my_layer2_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 24, HSV_RED}
+    {0, 24, HSV_CYAN}
 );
 
 const rgblight_segment_t PROGMEM my_layer3_layer[] = RGBLIGHT_LAYER_SEGMENTS(
