@@ -17,10 +17,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #pragma once
 
-#define MASTER_LEFT
-#define RGBLIGHT_ANIMATIONS
-#define RGBLIGHT_LAYERS
-#define SPLIT_LAYER_STATE_ENABLE
+// #define SOFT_SERIAL_PIN D3
+// #define MASTER_LEFT
+// #define RGBLIGHT_ANIMATIONS
+// #define RGBLIGHT_LAYERS
+// #define SPLIT_LAYER_STATE_ENABLE
 // #define USE_SERIAL
 //#define MASTER_RIGHT
 

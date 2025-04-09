@@ -25,7 +25,8 @@
         "console": false,
         "extrakey": true,
         "mousekey": true,
-        "nkro": false
+        "nkro": false,
+        "rgblight": true
     },
     "qmk": {
         "locking": {
@@ -40,9 +41,9 @@
     "diode_direction": "COL2ROW",
     "split": {
         "enabled": true,
-        "soft_serial_pin": "D3"
+        "soft_serial_pin": "D0"
         "serial": {
-            "pin": "D3"
+            "pin": "D0"
         },
         "transport": {
             "protocol": "serial"
@@ -50,9 +51,6 @@
     },
     "processor": "atmega32u4",
     "bootloader": "caterina",
-    "features": {
-        "rgblight": true
-    },
     "layouts": {
         "LAYOUT_5x6": {
             "layout": [

@@ -11,7 +11,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      KC_TAB , KC_Q  , KC_W  , KC_E  , KC_R  , KC_T  ,                         KC_Y  , KC_U  , KC_I  , KC_O  , KC_P  ,KC_BSLS,
      KC_ESC , KC_A  , KC_S  , KC_D  , KC_F  , KC_G  ,                         KC_H  , KC_J  , KC_K  , KC_L  ,KC_SCLN,KC_QUOT,
      KC_LSFT, KC_Z  , KC_X  , KC_C  , KC_V  , KC_B  ,                         KC_N  , KC_M  ,KC_COMM,KC_DOT ,KC_SLSH,KC_RSFT,
-     MO(_FN), KC_GRV,KC_NUBS,KC_LEFT, KC_RGHT,                                        KC_UP, KC_DOWN, KC_LBRC,  KC_RBRC, RGB_TOG,
+     MO(_FN), KC_GRV,KC_NUBS,KC_LEFT, KC_RGHT,                                        KC_DOWN, KC_UP, KC_LBRC,  KC_RBRC, RGB_TOG,
                                       KC_LGUI, TG(_FN) ,                          MO(_MAC), KC_LGUI,
                                             KC_LALT,                          KC_RALT,
                                 KC_BSPC,KC_DEL, KC_LCTL,                     KC_RCTL, KC_ENT, KC_SPC
@@ -32,11 +32,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // NB: KC_BRMD and KC_BRMU are aliases for KC_F14 and KC_F15. On a MacBook, these control the screen brightness by default.
 // When using an external display, assign brightness control to F14 and F15 manually in the system settings.
     [_MAC] = LAYOUT_5x6(
-       XXXXXXX,XXXXXXX , XXXXXXX , KC_MPRV , KC_MPLY , KC_MNXT,                        KC_MUTE, KC_VOLD, KC_VOLU, KC_BRMD ,KC_BRMU ,XXXXXXX,
-       XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,                        XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,
-       XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,                        XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,
-       XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,                        XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,
-       XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,                                         XXXXXXX , XXXXXXX , XXXXXXX ,XXXXXXX,XXXXXXX,
+       _______,_______ , _______ , KC_MPRV , KC_MPLY , KC_MNXT,                        KC_MUTE, KC_VOLD, KC_VOLU, KC_BRMD ,KC_BRMU ,_______,
+       _______,_______,_______,_______,_______,_______,                        _______,_______,_______,_______,_______,_______,
+       _______,_______,_______,_______,_______,_______,                        _______,_______,_______,_______,_______,_______,
+       _______,_______,_______,_______,_______,_______,                        _______,_______,_______,_______,_______,_______,
+       _______,_______,_______,_______,_______,                                         _______ , _______ , _______ ,_______,_______,
                                                _______,_______,            _______ ,_______,
                                                        _______,            _______,
                                        _______,_______,_______,            _______,_______,_______
